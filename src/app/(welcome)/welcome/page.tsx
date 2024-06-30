@@ -9,6 +9,7 @@ const featureSections = [
     content:
       "Finding the perfect caregiver for your little one has never been easier. At CareLink, we connect you with trusted experienced  babysitters who provide safe, loving care, giving you peace of mind while you're away. Join our community and discover the best care for your family's needs.",
     isRight: true,
+    alt: "A women holding a baby"
   },
   {
     image: "/pet-sitting.png",
@@ -16,6 +17,7 @@ const featureSections = [
     content:
       "Leave your furry friends in safe hands with CareLink. Our trusted and experienced pet sitters provide the love and care your pets deserve while you're away. Join our community today and ensure your pets receive the best care possible.",
     isRight: false,
+    alt: "A girl waling with a dog"
   },
 ];
 

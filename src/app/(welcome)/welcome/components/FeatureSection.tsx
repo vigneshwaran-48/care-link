@@ -6,9 +6,10 @@ interface Props {
   isRight?: boolean;
   heading: string;
   content: string;
+  alt?: string
 }
 
-const FeatureSection = ({ image, isRight = true, heading, content }: Props) => {
+const FeatureSection = ({ image, isRight = true, heading, content, alt }: Props) => {
   return (
     <div className="my-[50px] w-full">
       <h2 className="text-[36px] font-bold py-2">{heading}</h2>
@@ -19,7 +20,7 @@ const FeatureSection = ({ image, isRight = true, heading, content }: Props) => {
           </p>
         )}
         <div className={`col-span-2 sm:col-span-1`}>
-          <Image width={400} height={100} src={image} alt={image} />
+          <Image width={400} height={100} src={image} alt={alt ?? image} />
         </div>
         {!isRight && (
           <p className="text-[24px] col-span-2 p-1 leading-relaxed  flex items-center">
