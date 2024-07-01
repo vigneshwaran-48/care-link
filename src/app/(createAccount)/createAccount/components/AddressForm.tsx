@@ -2,18 +2,28 @@
 
 import Dropdown from "@/app/components/form/Dropdown";
 import TextInput from "@/app/components/form/TextInput";
+import { setPage } from "@/lib/features/createAccountSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import countries from "@/util/countries";
 import React, { useState } from "react";
 
-const countryOptions = countries.map(country => ({ displayName: country, value: country }));
+const countryOptions = countries.map((country) => ({
+  displayName: country,
+  value: country,
+}));
 
 const AddressForm = () => {
+
+  const dispatch = useAppDispatch();
+
+  const page = useAppSelector(state => state.createAccountSlice.currentPage);
+
   const [address, setAddress] = useState({
     street: "",
     country: "India",
     state: "",
     city: "",
-    zipCode: 0
+    zipCode: 0,
   });
 
   const handleDropdownChange = (name: string, value: string) => {
@@ -72,7 +82,13 @@ const AddressForm = () => {
           onChange={(value) => handleDropdownChange("country", value)}
           displayName="Country"
         />
-        <button className="text-other-text bg-other-bg border-none rounded p-2 w-full text-[20px] mt-7">Submit</button>
+        <button
+          type="button"
+          className="text-other-text bg-other-bg border-none rounded p-2 w-full text-[20px] mt-7"
+          onClick={() => dispatch(setPage(page + 1))}
+        >
+          Submit
+        </button>
       </form>
     </div>
   );

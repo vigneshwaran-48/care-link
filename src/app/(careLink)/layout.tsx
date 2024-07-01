@@ -2,9 +2,7 @@ import React from "react";
 import { Metadata } from "next";
 import "../globals.css";
 import { Poppins } from "next/font/google";
-import RightBanner from "./components/RightBanner";
 import AppIcon from "../components/AppIcon";
-import StoreProvider from "../providers/StoreProvider";
 
 export const metadata: Metadata = {
   title: "Create Account",
@@ -42,15 +40,7 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
         <link rel="manifest" href="/favicon_io/site.webmanifest" />
       </head>
       <body className="w-full h-full mode-light bg-neutral-bg">
-        <main className="w-full h-full flex">
-          <div className="w-full h-full flex flex-col">
-            <AppIcon className="m-2" />
-            <div className="h-[calc(100%-40px)] overflow-y-scroll hide-scrollbar">
-              <StoreProvider>{children}</StoreProvider>
-            </div>
-          </div>
-          <RightBanner />
-        </main>
+        { children }
       </body>
     </html>
   );
