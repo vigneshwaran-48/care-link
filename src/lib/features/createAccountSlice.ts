@@ -21,7 +21,7 @@ interface State {
 }
 
 const initialState: State = {
-  currentPage: 1,
+  currentPage: 0,
   address: {
     country: "India",
     city: "Chennai",

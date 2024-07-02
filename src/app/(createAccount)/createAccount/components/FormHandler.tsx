@@ -12,16 +12,18 @@ const FormHandler = () => {
 
 
     return (
-        <div className="relative max-w-[450px] w-full h-full overflow-hidden flex">
-            <div className={`absolute w-full h-full flex-shrink-0 transition-transform duration-500 transform ${page === 1 ? 'translate-x-0' : page === 2 ? 'translate-x-full' : 'translate-x-2/3'}`}>
-                <ProfileInfoForm />
-            </div>
-            <div className={`absolute w-full h-full flex-shrink-0 transition-transform duration-500 transform ${page === 2 ? 'translate-x-0' : page < 2 ? 'translate-x-full' : '-translate-x-full'}`}>
-                <AddressForm />
-            </div>
-            <div className={`absolute w-full h-full flex-shrink-0 transition-transform duration-500 transform ${page === 3 ? 'translate-x-0' : 'translate-x-full'}`}>
-                <p>HI</p>
-                <ProfileInfoForm />
+        <div className="relative max-w-[450px] w-full h-full flex overflow-hidden">
+            <div className={`w-full h-full flex transition-all duration-500 translate-x-[-${page * 450}px]`}>
+                <div className={`w-full h-full flex-shrink-0`}>
+                    <ProfileInfoForm />
+                </div>
+                <div className={`w-full h-full flex-shrink-0`}>
+                    <AddressForm />
+                </div>
+                <div className={`w-full h-full flex-shrink-0`}>
+                    <p>HI</p>
+                    <ProfileInfoForm />
+                </div>
             </div>
         </div>
     );
