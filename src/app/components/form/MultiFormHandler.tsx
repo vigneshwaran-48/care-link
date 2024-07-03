@@ -2,6 +2,8 @@
 
 import React, { ReactElement, useState } from "react";
 import { motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 interface Page {
   index: number;
@@ -10,26 +12,27 @@ interface Page {
 
 interface Props {
   pages: Page[];
+  onSubmit: () => void;
 }
 
-const MultiFormHandler = ({ pages }: Props) => {
+const MultiFormHandler = ({ pages, onSubmit }: Props) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [previousPage, setPreviousPage] = useState<number>(0);
 
   const next = () => {
     if (currentPage >= pages.length) {
-        return;
+      return;
     }
+    setPreviousPage(currentPage);
     setCurrentPage(currentPage + 1);
-    setPreviousPage(previousPage + 1);
   };
 
   const previous = () => {
     if (currentPage <= 1) {
-        return;
+      return;
     }
+    setPreviousPage(currentPage);
     setCurrentPage(currentPage - 1);
-    setPreviousPage(previousPage - 1);
   };
 
   const delta = currentPage - previousPage;
@@ -38,15 +41,26 @@ const MultiFormHandler = ({ pages }: Props) => {
 
   return (
     <motion.div
-      initial={{ x: delta > 0 ? "50%" : "-50%", y: 0 }}
-      animate={{ x: 0, y: 0 }}
-      transition={{ duration: 0.3, ease: 'easeInOut' }}
-      className="w-full h-full flex flex-col"
+      key={currentPage}
+      initial={{ x: delta > 0 ? "50%" : "-50%", opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className="w-full h-full flex flex-col justify-center overflow-y-scroll hide-scrollbar"
     >
       {page}
-      <div className="flex w-full justify-between">
-        <button onClick={previous}>Previous</button>
-        <button onClick={next}>Next</button>
+      <div className="flex w-full justify-between items-center p-2 mt-4">
+        <button
+          onClick={previous}
+          className="border-none rounded p-2 text-[20px] bg-white px-4"
+        >
+          <FontAwesomeIcon icon={faChevronLeft} />
+        </button>
+        <button
+          className="text-other-text bg-other-bg border-none rounded p-2 text-[20px]"
+          onClick={currentPage === pages.length ? onSubmit : next}
+        >
+          {currentPage === pages.length ? "Submit" : "Next"}
+        </button>
       </div>
     </motion.div>
   );

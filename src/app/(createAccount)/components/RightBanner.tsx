@@ -3,7 +3,7 @@ import React from "react";
 
 const RightBanner = () => {
   return (
-    <div className="hidden h-full md:flex md:w-[50%] md:max-w-[550px] lg:max-w-[800px] bg-primary text-other-text flex-shrink-0 flex-col p-2 items-center justify-center">
+    <div className="hidden h-full md:flex md:w-[50%] md:max-w-[550px] lg:max-w-[800px] bg-primary text-other-text flex-shrink-0 flex-col p-2 items-center justify-center overflow-y-scroll hide-scrollbar">
       <Image
         src="/baby-sitting.png"
         width={400}
